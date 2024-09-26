@@ -1,13 +1,32 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* font-face */
+@font-face {
+    font-family: "Spoqa Han Sans Neo";
+    src: url("./assets/fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
+    font-weight: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: "Spoqa Han Sans Neo";
+    src: url("./assets/fonts/SpoqaHanSansNeo-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Spoqa Han Sans Neo";
+    src: url("./assets/fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+/*______________________________________________________________________________*/
+
+/* global styles */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Spoqa Han Sans Neo";
+    letter-spacing: -3%;
 }
