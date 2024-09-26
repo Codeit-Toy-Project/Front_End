@@ -20,13 +20,22 @@
 /*______________________________________________________________________________*/
 
 /* global styles */
+html,
 body {
+    height: 100%;
     margin: 0;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 
     font-family: "Spoqa Han Sans Neo";
     letter-spacing: -3%;
+}
+
+:global(#root) {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 1920px;
+    margin: 0 auto;
 }
