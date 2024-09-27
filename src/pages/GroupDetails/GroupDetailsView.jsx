@@ -1,3 +1,9 @@
-export default function GroupDetailsView() {
-    return <div>Group Details</div>;
+import Profile from "../../components/profile";
+
+export default function MemoryDetailsView() {
+    return (
+        <div>
+            <Profile />
+        </div>
+    );
 }
