@@ -30,6 +30,8 @@ body {
 
     font-family: "Spoqa Han Sans Neo";
     letter-spacing: -3%;
+
+    background-color: var(--gray50);
 }
 
 :global(#root) {
