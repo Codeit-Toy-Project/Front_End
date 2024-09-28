@@ -3,7 +3,6 @@ import icon from "../assets/logo/logo.png";
 
 const NavStyle = styled.div`
     display: flex;
-    position: fixed;
     left: 0;
     top: 0;
     justify-content: center;
