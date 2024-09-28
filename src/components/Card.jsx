@@ -116,7 +116,9 @@ const CountNum = styled.text`
 //-----------------------------------
 
 //CardBox -> ImgBox, (DateInfo, AccessInfo), (Title, Description), (BadgeVCount, MemoryCount, EmpathyCount)
-function Card() {
+
+//공개 그룹 카드
+function GroupCard() {
     return (
         <CardBox>
             {/*Img Box */}
@@ -159,7 +161,8 @@ function Card() {
     );
 }
 
-function PrivateCard() {
+//비공개 그룹 카드
+function PrivateGroupCard() {
     return (
         <PrivateCardBox>
             <HeadBox>
@@ -189,4 +192,10 @@ function PrivateCard() {
     );
 }
 
-export { Card, PrivateCard };
+//공개 추억 카드
+function MemoryCard() {}
+
+//비공개 추억 카드
+function PrivateMemoryCard() {}
+
+export { GroupCard, PrivateGroupCard as PrivateCard };
