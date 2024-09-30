@@ -4,7 +4,12 @@ import { CreateGroupButton } from "../../components/Button";
 import { AccessTab } from "../../components/Tab";
 import { GroupSearch } from "../../components/Input";
 import { ArrayDropDown } from "../../components/DropDown";
-import { GroupCard } from "../../components/Card";
+import {
+    GroupCard,
+    MemoryCard,
+    PrivateGroupCard,
+    PrivateMemoryCard,
+} from "../../components/Card";
 
 // Head Area
 
@@ -51,7 +56,7 @@ export default function openGroupListView() {
             <GroupListBox>
                 <GroupListArea>
                     {Array.from({ length: NUM_CARDS }).map((_, index) => (
-                        <GroupCard key={index} />
+                        <PrivateMemoryCard key={index} />
                     ))}
                 </GroupListArea>
             </GroupListBox>
