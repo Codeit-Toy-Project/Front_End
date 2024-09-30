@@ -9,7 +9,7 @@ const DropDownButton = styled.button`
     width: 160px;
     height: 45px;
 
-    background-color: var(--white);
+    background-color: var(--gray50);
     border-radius: 6px;
     border: 2px solid var(--black);
     cursor: pointer;
@@ -30,7 +30,7 @@ const DropdownList = styled.ul`
     top: 100%;
     left: 0;
 
-    background-color: var(--white);
+    background-color: var(--gray50);
     border: 2px solid var(--black);
     border-radius: 6px;
 
