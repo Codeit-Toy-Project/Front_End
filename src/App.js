@@ -8,9 +8,9 @@ import {
 import styled from "styled-components";
 
 import Nav from "./components/Nav";
-import GroupDetailsView from "./pages/GroupDetails/GroupDetailsView";
-import MemoryDetailsView from "./pages/MemoryDetails/MemoryDetailsView";
-import OpenGroupListView from "./pages/openGroupList/openGroupListView";
+import GroupDetailsPages from "./pages/GroupDetails/GroupDetailsPages";
+import MemoryDetailsPages from "./pages/MemoryDetails/MemoryDetailsPages";
+import GroupListPages from "./pages/GroupList/GroupListPages";
 
 const StyledContainer = styled.div`
     display: flex;
@@ -32,13 +32,13 @@ function App() {
                     />
                     <Route
                         path="/group-details"
-                        element={<GroupDetailsView />}
+                        element={<GroupDetailsPages />}
                     />
                     <Route
                         path="/memory-details"
-                        element={<MemoryDetailsView />}
+                        element={<MemoryDetailsPages />}
                     />
-                    <Route path="/group-list" element={<OpenGroupListView />} />
+                    <Route path="/group-list" element={<GroupListPages />} />
                 </Routes>
             </StyledContainer>
         </Router>
