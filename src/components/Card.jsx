@@ -116,7 +116,7 @@ const CountNum = styled.text`
 `;
 
 // --------------------------------
-// Hasg tag
+// Hash tag
 
 const HashTagBox = styled.div`
     display: flex;

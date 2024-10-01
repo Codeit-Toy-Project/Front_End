@@ -26,8 +26,8 @@ function CreateMemoryButton() {
     return <Button style={{ width: "200px" }}>추억 보내기</Button>;
 }
 
-function MaxButton() {
-    return <Button>만들기</Button>;
+function PostCommentButton() {
+    return <Button>댓글 등록하기</Button>;
 }
 
-export { CreateGroupButton, CreateMemoryButton, MaxButton };
+export { CreateGroupButton, CreateMemoryButton, PostCommentButton };
