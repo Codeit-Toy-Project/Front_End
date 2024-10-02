@@ -4,7 +4,7 @@ import profileImg from "../../src/assets/favicon/profileImg.png";
 import empathyIcon from "../../src/assets/favicon/favicon32_32.png";
 import EmpathyButton from "./Like";
 import Modify from "../modal/GroupDetailsModal/Modify";
-
+import DeleteModal from "../modal/GroupDetailsModal/Delete";
 
 // 추억, 공감 컴포넌트
 const Memories = () => {
@@ -28,6 +28,7 @@ const Memories = () => {
 const ResponsiveButtons = () => {
     const [activeButton, setActiveButton] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const handleEditClick = () => {
         setActiveButton("edit");
@@ -36,6 +37,15 @@ const ResponsiveButtons = () => {
     
       const handleCloseModal = () => {
         setIsModalOpen(false); // 모달 닫기
+      };
+
+      const handleDeleteClick = () => {
+        setActiveButton("delete");
+        setIsDeleteModalOpen(true); // 삭제 모달 열기
+      };
+      
+      const handleCloseDeleteModal = () => {
+        setIsDeleteModalOpen(false); // 삭제 모달 닫기
       };
     
     return (
@@ -48,12 +58,13 @@ const ResponsiveButtons = () => {
       </EditButton>
       <DeleteButton
         isActive={activeButton === "delete"}
-        onClick={() => setActiveButton("delete")}
+        onClick={handleDeleteClick} // 수정된 부분
       >
         그룹 삭제하기
       </DeleteButton>
 
       {isModalOpen && <Modify onClose={handleCloseModal} />}
+      {isDeleteModalOpen && <DeleteModal onClose={handleCloseDeleteModal} />}
     </ButtonContainer>
     );
 };
