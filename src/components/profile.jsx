@@ -3,6 +3,8 @@ import styled from "styled-components";
 import profileImg from "../../src/assets/favicon/profileImg.png";
 import empathyIcon from "../../src/assets/favicon/favicon32_32.png";
 import EmpathyButton from "./Like";
+import Modify from "../modal/GroupDetailsModal/Modify";
+
 
 // 추억, 공감 컴포넌트
 const Memories = () => {
@@ -21,24 +23,38 @@ const Memories = () => {
     );
 };
 
+
 // 수정, 삭제 버튼 컴포넌트
 const ResponsiveButtons = () => {
     const [activeButton, setActiveButton] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleEditClick = () => {
+        setActiveButton("edit");
+        setIsModalOpen(true); // 모달 열기
+      };
+    
+      const handleCloseModal = () => {
+        setIsModalOpen(false); // 모달 닫기
+      };
+    
     return (
-        <ButtonContainer>
-            <EditButton
-                isActive={activeButton === "edit"}
-                onClick={() => setActiveButton("edit")}
-            >
-                그룹 정보 수정하기
-            </EditButton>
-            <DeleteButton
-                isActive={activeButton === "delete"}
-                onClick={() => setActiveButton("delete")}
-            >
-                그룹 삭제하기
-            </DeleteButton>
-        </ButtonContainer>
+       <ButtonContainer>
+      <EditButton
+        isActive={activeButton === "edit"}
+        onClick={handleEditClick}
+      >
+        그룹 정보 수정하기
+      </EditButton>
+      <DeleteButton
+        isActive={activeButton === "delete"}
+        onClick={() => setActiveButton("delete")}
+      >
+        그룹 삭제하기
+      </DeleteButton>
+
+      {isModalOpen && <Modify onClose={handleCloseModal} />}
+    </ButtonContainer>
     );
 };
 
@@ -118,7 +134,6 @@ const BadgeListComponent = ({ badges }) => {
 
     return (
         <BadgeListContainer>
-            {/* 왼쪽 스크롤 버튼 */}
             <ScrollButton left onClick={scrollLeft} visible={scrollLeftVisible}>
                 &lt;
             </ScrollButton>
