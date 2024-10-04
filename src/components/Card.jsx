@@ -16,6 +16,8 @@ const CardBox = styled.div`
     padding: 20px;
     box-sizing: border-box;
     gap: 20px;
+
+    cursor: pointer;
 `;
 
 const PrivateCardBox = styled(CardBox)`

@@ -1,20 +1,20 @@
-import styled from "styled-components";
+import { useState } from "react";
 
 import InputArea from "../../components/InputArea";
-import {
-    OpenGroupList,
-    PrivateGroupList,
-    OpenMemoryList,
-    PrivateMemoryList,
-} from "../../components/ListView";
+import { OpenGroupList, PrivateGroupList } from "../../components/ListView";
+import More from "../../components/More";
 
 //--------------------------------------------------
 // Nav Bar - Input Area(Access Tab, Input Box , DropDown List) - (Group List) - More
-export default function openGroupListPages() {
+export default function GroupListPages() {
+    // InputArea -> AccessTab -> Tab
+    const [isPublic, setIsPublic] = useState(true);
+
     return (
         <>
-            <InputArea></InputArea>
-            <OpenGroupList></OpenGroupList>
+            <InputArea setIsPublic={setIsPublic} />
+            {isPublic ? <OpenGroupList /> : <PrivateGroupList />}
+            <More />
         </>
     );
 }
