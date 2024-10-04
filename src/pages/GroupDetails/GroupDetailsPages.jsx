@@ -1,14 +1,11 @@
 import styled from "styled-components";
+import { useState } from "react";
 
 import Profile from "../../components/profile";
 import { CreateMemoryButton } from "../../components/Button";
 import InputArea from "../../components/InputArea";
-import {
-    OpenGroupList,
-    PrivateGroupList,
-    OpenMemoryList,
-    PrivateMemoryList,
-} from "../../components/ListView";
+import { OpenMemoryList, PrivateMemoryList } from "../../components/ListView";
+import More from "../../components/More";
 
 const ListHeadBox = styled.div`
     position: relative;
@@ -40,6 +37,9 @@ const MemorySubmitButton = styled.div`
 `;
 
 export default function MemoryDetailsPages() {
+    // InputArea -> AccessTab -> Tab
+    const [isPublic, setIsPublic] = useState(true);
+
     return (
         <div>
             <Profile />
@@ -51,9 +51,9 @@ export default function MemoryDetailsPages() {
                 </MemorySubmitButton>
             </ListHeadBox>
 
-            <InputArea></InputArea>
-
-            <OpenMemoryList></OpenMemoryList>
+            <InputArea setIsPublic={setIsPublic} />
+            {isPublic ? <OpenMemoryList /> : <PrivateMemoryList />}
+            <More />
         </div>
     );
 }

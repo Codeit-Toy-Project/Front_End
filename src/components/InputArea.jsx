@@ -11,10 +11,10 @@ const HeadArea = styled.div`
     gap: 20px;
 `;
 
-function InputArea() {
+function InputArea({ setIsPublic }) {
     return (
         <HeadArea>
-            <AccessTab />
+            <AccessTab setIsPublic={setIsPublic} />
             <GroupSearch />
             <ArrayDropDown />
         </HeadArea>

@@ -29,11 +29,15 @@ const Tab = styled.button`
     cursor: pointer;
 `;
 
-function AccessTab() {
+function AccessTab({ setIsPublic }) {
+    const handleTabClick = (isPublic) => {
+        setIsPublic(isPublic);
+    };
+
     return (
         <TabContainer>
-            <Tab>공개</Tab>
-            <Tab>비공개</Tab>
+            <Tab onClick={() => handleTabClick(true)}>공개</Tab>
+            <Tab onClick={() => handleTabClick(false)}>비공개</Tab>
         </TabContainer>
     );
 }
