@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import noneGroup from "../assets/favicon/noneGroup.png";
+import noneMemory from "../assets/favicon/noneMemory.png";
 import {
     GroupCard,
     MemoryCard,
@@ -88,4 +89,31 @@ function PrivateMemoryList() {
     );
 }
 
-export { OpenGroupList, PrivateGroupList, OpenMemoryList, PrivateMemoryList };
+function NoneGroupList() {
+    return (
+        <>
+            <GroupListBox>
+                <img src={noneGroup} />
+            </GroupListBox>
+        </>
+    );
+}
+
+function NoneMemoryList() {
+    return (
+        <>
+            <GroupListBox>
+                <img src={noneMemory} />
+            </GroupListBox>
+        </>
+    );
+}
+
+export {
+    OpenGroupList,
+    PrivateGroupList,
+    NoneGroupList,
+    OpenMemoryList,
+    PrivateMemoryList,
+    NoneMemoryList,
+};

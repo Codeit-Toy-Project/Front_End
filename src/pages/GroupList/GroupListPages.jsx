@@ -1,7 +1,11 @@
 import { useState } from "react";
 
 import InputArea from "../../components/InputArea";
-import { OpenGroupList, PrivateGroupList } from "../../components/ListView";
+import {
+    OpenGroupList,
+    PrivateGroupList,
+    NoneGroupList,
+} from "../../components/ListView";
 import More from "../../components/More";
 
 //--------------------------------------------------

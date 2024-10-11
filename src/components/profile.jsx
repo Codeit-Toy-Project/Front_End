@@ -3,7 +3,7 @@ import styled from "styled-components";
 import profileImg from "../../src/assets/favicon/profileImg.png";
 import empathyIcon from "../../src/assets/favicon/favicon32_32.png";
 import EmpathyButton from "./Like";
-import Modify from "../modal/GroupDetailsModal/Modify";
+import { Modify } from "../modal/GroupDetailsModal/HandleGroup";
 import DeleteModal from "../modal/GroupDetailsModal/Delete";
 
 // 추억, 공감 컴포넌트
@@ -23,7 +23,6 @@ const Memories = () => {
     );
 };
 
-
 // 수정, 삭제 버튼 컴포넌트
 const ResponsiveButtons = () => {
     const [activeButton, setActiveButton] = useState(null);
@@ -33,39 +32,41 @@ const ResponsiveButtons = () => {
     const handleEditClick = () => {
         setActiveButton("edit");
         setIsModalOpen(true); // 모달 열기
-      };
-    
-      const handleCloseModal = () => {
-        setIsModalOpen(false); // 모달 닫기
-      };
+    };
 
-      const handleDeleteClick = () => {
+    const handleCloseModal = () => {
+        setIsModalOpen(false); // 모달 닫기
+    };
+
+    const handleDeleteClick = () => {
         setActiveButton("delete");
         setIsDeleteModalOpen(true); // 삭제 모달 열기
-      };
-      
-      const handleCloseDeleteModal = () => {
-        setIsDeleteModalOpen(false); // 삭제 모달 닫기
-      };
-    
-    return (
-       <ButtonContainer>
-      <EditButton
-        isActive={activeButton === "edit"}
-        onClick={handleEditClick}
-      >
-        그룹 정보 수정하기
-      </EditButton>
-      <DeleteButton
-        isActive={activeButton === "delete"}
-        onClick={handleDeleteClick} // 수정된 부분
-      >
-        그룹 삭제하기
-      </DeleteButton>
+    };
 
-      {isModalOpen && <Modify onClose={handleCloseModal} />}
-      {isDeleteModalOpen && <DeleteModal onClose={handleCloseDeleteModal} />}
-    </ButtonContainer>
+    const handleCloseDeleteModal = () => {
+        setIsDeleteModalOpen(false); // 삭제 모달 닫기
+    };
+
+    return (
+        <ButtonContainer>
+            <EditButton
+                isActive={activeButton === "edit"}
+                onClick={handleEditClick}
+            >
+                그룹 정보 수정하기
+            </EditButton>
+            <DeleteButton
+                isActive={activeButton === "delete"}
+                onClick={handleDeleteClick} // 수정된 부분
+            >
+                그룹 삭제하기
+            </DeleteButton>
+
+            {isModalOpen && <Modify onClose={handleCloseModal} />}
+            {isDeleteModalOpen && (
+                <DeleteModal onClose={handleCloseDeleteModal} />
+            )}
+        </ButtonContainer>
     );
 };
 
