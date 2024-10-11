@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Button = styled.button`
     justify-content: center;
@@ -19,7 +20,17 @@ const Button = styled.button`
 `;
 
 function CreateGroupButton() {
-    return <Button style={{ width: "200px" }}>그룹 만들기</Button>;
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/create-group");
+    };
+
+    return (
+        <Button style={{ width: "200px" }} onClick={handleClick}>
+            그룹 만들기
+        </Button>
+    );
 }
 
 function CreateMemoryButton() {
