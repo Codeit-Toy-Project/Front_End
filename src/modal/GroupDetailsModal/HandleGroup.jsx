@@ -87,6 +87,8 @@ const Modify = ({ onClose, isPublicInitial }) => {
     );
 };
 
+// ----------------------------------------------------------------------
+
 const CreateGroup = () => {
     const [groupName, setGroupName] = useState("");
     const [groupImage, setGroupImage] = useState(null);
@@ -188,6 +190,209 @@ const CreateGroup = () => {
     );
 };
 
+const CreateMemory = () => {
+    const [memoryName, setMemoryName] = useState("");
+    const [memoryTitle, setMemoryTitle] = useState("");
+    const [memoryImage, setGroupImage] = useState(null);
+    const [memoryDescription, setmemoryDescription] = useState("");
+
+    const [inputTag, setInputTag] = useState("");
+    const [memoryTag, setMemoryTag] = useState([]);
+    const [memoryLocation, setMemoryLocation] = useState("");
+    const [memoryDate, setMemoryDate] = useState("");
+
+    const [memoryPassword, setMemoryPassword] = useState("");
+    const [isPublic, setIsPublic] = useState(true); // 공개 여부 초기값 설정
+
+    const handleImageChange = (e) => {
+        setGroupImage(e.target.files[0]);
+    };
+
+    const handleSubmit = () => {
+        //TODO: - 그룹 수정 로직 추가
+        console.log({
+            memoryName: memoryName,
+            memoryImage: memoryImage,
+            memoryDescription: memoryDescription,
+            memoryTag: memoryTag,
+            memoryLocation: memoryLocation,
+            memoryDate: memoryDate,
+            memoryPassword: memoryPassword,
+            isPublic,
+        });
+        resetForm();
+    };
+
+    const resetForm = () => {
+        setMemoryName("");
+        setGroupImage(null);
+        setmemoryDescription("");
+        setMemoryTag([]);
+        setMemoryLocation("");
+        setMemoryDate("");
+        setMemoryPassword("");
+        setIsPublic(true);
+    };
+
+    const addTag = () => {
+        if (inputTag.trim() !== "" && !memoryTag.includes(inputTag.trim())) {
+            setMemoryTag((prevTags) => [...prevTags, inputTag.trim()]);
+            setInputTag("");
+        }
+        console.log(memoryTag);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            addTag();
+        }
+    };
+
+    return (
+        <>
+            <SectionBody>
+                <HeaderText style={{ textAlign: "center" }}>
+                    추억 올리기
+                </HeaderText>
+                <Section>
+                    <Body>
+                        <FieldBox>
+                            <Label>닉네임</Label>
+                            <Input
+                                type="text"
+                                value={memoryName}
+                                onChange={(e) => setMemoryName(e.target.value)}
+                            />
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>제목</Label>
+                            <Input
+                                type="text"
+                                value={memoryTitle}
+                                onChange={(e) => setMemoryTitle(e.target.value)}
+                            />
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>이미지</Label>
+                            <ImageWrapper>
+                                <FileName>
+                                    {memoryImage
+                                        ? memoryImage.name
+                                        : "파일을 선택해 주세요"}
+                                </FileName>
+                                <FileButton htmlFor="file-upload">
+                                    파일 선택
+                                </FileButton>
+                                <InputFile
+                                    id="file-upload"
+                                    type="file"
+                                    onChange={handleImageChange}
+                                />
+                            </ImageWrapper>
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>본문</Label>
+                            <Textarea
+                                placeholder="본문 내용을 입력해 주세요"
+                                value={memoryDescription}
+                                onChange={(e) =>
+                                    setmemoryDescription(e.target.value)
+                                }
+                            />
+                        </FieldBox>
+                    </Body>
+
+                    <Body>
+                        <FieldBox>
+                            <Label>태그</Label>
+                            <Input
+                                type="text"
+                                value={inputTag}
+                                onChange={(e) => setInputTag(e.target.value)}
+                                onKeyDown={handleKeyDown}
+                            />
+                            <TagField>
+                                {memoryTag.map((tag) => `#${tag}`).join(" ")}
+                            </TagField>
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>장소</Label>
+                            <Input
+                                type="text"
+                                value={memoryLocation}
+                                onChange={(e) =>
+                                    setMemoryLocation(e.target.value)
+                                }
+                            />
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>추억의 순간</Label>
+                            <Input
+                                htmlFor="date"
+                                type="date"
+                                value={memoryDate}
+                                onChange={(e) => setMemoryDate(e.target.value)}
+                                style={{ fontFamily: "Spoqa Han Sans Neo" }}
+                            />
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>그룹 공개 여부</Label>
+                            <ToggleContainer>
+                                <ToggleText>공개</ToggleText>
+                                <ToggleWrapper
+                                    isPublic={isPublic}
+                                    onClick={() => setIsPublic(!isPublic)}
+                                >
+                                    <ToggleButton isPublic={isPublic} />
+                                </ToggleWrapper>
+                            </ToggleContainer>
+                        </FieldBox>
+
+                        <FieldBox>
+                            <Label>비밀번호 생성</Label>
+                            <Input
+                                type="password"
+                                value={memoryPassword}
+                                onChange={(e) =>
+                                    setMemoryPassword(e.target.value)
+                                }
+                                placeholder="추억 비밀번호를 생성해 주세요."
+                                style={{ "font-family": "Spoqa Han Sans Neo" }}
+                            />
+                        </FieldBox>
+                    </Body>
+                </Section>
+                <SubmitButton style={{ width: "400px" }} onClick={handleSubmit}>
+                    올리기
+                </SubmitButton>
+            </SectionBody>
+        </>
+    );
+};
+
+const Section = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+`;
+
+const TagField = styled.div`
+    display: flex;
+    align-items: inline-start;
+    height: 20px;
+    overflow: hidden;
+
+    font-size: 14px;
+`;
+
+// ----------------------------------------------------------------------
+
 const AccessPriavteGroup = () => {
     const [groupPassword, setGroupPassword] = useState("");
 
@@ -216,6 +421,8 @@ const AccessPriavteGroup = () => {
         </>
     );
 };
+
+// ----------------------------------------------------------------------
 
 const AccessPriavteMemory = () => {
     const [groupPassword, setGroupPassword] = useState("");
@@ -246,15 +453,31 @@ const AccessPriavteMemory = () => {
     );
 };
 
-export { Modify, CreateGroup, AccessPriavteGroup, AccessPriavteMemory };
+export {
+    Modify,
+    CreateGroup,
+    CreateMemory,
+    AccessPriavteGroup,
+    AccessPriavteMemory,
+};
 
 const Body = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: inline-start;
 
     width: 400px;
+
+    gap: 35px;
+`;
+
+const SectionBody = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 900px;
 
     gap: 35px;
 `;
@@ -299,7 +522,6 @@ const HeaderText = styled.div`
     color: #282828;
     font-size: 24px;
     font-weight: bold;
-    margin-left: 33%;
 `;
 
 const ModalHeader = styled.div`

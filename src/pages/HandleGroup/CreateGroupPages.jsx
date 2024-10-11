@@ -1,4 +1,4 @@
-import { CreateGroup } from "../modal/GroupDetailsModal/HandleGroup";
+import { CreateGroup } from "../../modal/GroupDetailsModal/HandleGroup";
 
 function CreateGroupPages() {
     return <CreateGroup></CreateGroup>;
