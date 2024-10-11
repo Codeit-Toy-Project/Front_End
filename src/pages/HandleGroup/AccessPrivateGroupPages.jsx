@@ -1,4 +1,4 @@
-import { AccessPriavteGroup } from "../modal/GroupDetailsModal/HandleGroup";
+import { AccessPriavteGroup } from "../../modal/GroupDetailsModal/HandleGroup";
 
 function AccessPriavteGroupPages() {
     return <AccessPriavteGroup></AccessPriavteGroup>;

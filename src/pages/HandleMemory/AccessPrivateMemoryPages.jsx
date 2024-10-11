@@ -1,4 +1,4 @@
-import { AccessPriavteMemory } from "../modal/GroupDetailsModal/HandleGroup";
+import { AccessPriavteMemory } from "../../modal/GroupDetailsModal/HandleGroup";
 
 function AccessPriavteMemoryPages() {
     return <AccessPriavteMemory></AccessPriavteMemory>;
