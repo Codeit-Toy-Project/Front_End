@@ -20,6 +20,7 @@ import CreateMemoryPages from "./pages/HandleMemory/CreateMemoryPages";
 import AccessPriavteMemoryPages from "./pages/HandleMemory/AccessPrivateMemoryPages";
 
 import MemoryDetailsPages from "./pages/MemoryDetails/MemoryDetailsPages";
+import  MemoryProvider  from "./context/MemoryContext";
 
 const StyledContainer = styled.div`
     display: flex;
@@ -31,6 +32,7 @@ const StyledContainer = styled.div`
 
 function App() {
     return (
+        <MemoryProvider>
         <Router>
             <Nav />
             <StyledContainer>
@@ -71,6 +73,7 @@ function App() {
                 </Routes>
             </StyledContainer>
         </Router>
+        </MemoryProvider>
     );
 }
 

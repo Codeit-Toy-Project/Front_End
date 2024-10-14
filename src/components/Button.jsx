@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import CreateMemoryModal from "../modal/GroupDetailsModal/CreateMemoryModal"
 
 const Button = styled.button`
     justify-content: center;
@@ -34,7 +36,25 @@ function CreateGroupButton() {
 }
 
 function CreateMemoryButton() {
-    return <Button style={{ width: "200px" }}>추억 보내기</Button>;
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleClick = () => {
+        setIsModalOpen(true); // 버튼 클릭 시 모달 열림
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false); // 모달 닫기 함수
+    };
+
+    return (
+        <>
+            <Button style={{ width: "200px" }} onClick={handleClick}>
+                추억 올리기
+            </Button>
+
+            {isModalOpen && <CreateMemoryModal onClose={handleCloseModal} />} {/* 모달 표시 */}
+        </>
+    );
 }
 
 function PostCommentButton() {
