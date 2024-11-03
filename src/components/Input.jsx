@@ -32,11 +32,18 @@ const Icon = styled.i`
     color: var(--gray400);
 `;
 
-function GroupSearch() {
+function GroupSearch({ setSearch }) {
+    const handleInputChange = (event) => {
+        setSearch(event.target.value);
+    };
+
     return (
         <SearchContainer>
             <Icon className="fas fa-search"></Icon>
-            <Search placeholder="그룹명을 검색해 주세요" />
+            <Search
+                placeholder="그룹명을 검색해 주세요"
+                onChange={handleInputChange}
+            />
         </SearchContainer>
     );
 }

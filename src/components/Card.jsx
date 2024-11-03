@@ -2,6 +2,17 @@ import styled from "styled-components";
 import icon16 from "../assets/favicon/favicon16_16.png";
 import icon64 from "../assets/favicon/favicon64_64.png";
 import comment from "../assets/favicon/comment.png";
+import moment from "moment";
+
+const calculateDday = (createdAt) => {
+    const now = moment();
+    const creationDate = moment(createdAt);
+    const dDay = now.diff(creationDate, "days");
+
+    console.log(dDay);
+
+    return dDay;
+};
 
 const CardBox = styled.div`
     display: flex;
@@ -168,24 +179,25 @@ const BottomCount = styled(CountNum)`
 //CardBox -> ImgBox, (DateInfo, AccessInfo), (Title, Description), (BadgeVCount, MemoryCount, EmpathyCount)
 
 //공개 그룹 카드
-function GroupCard() {
+function GroupCard({ group }) {
     return (
         <CardBox>
-            {/*Img Box */}
+            {/* Img Box */}
             <ImgBox>
-                <img src={icon64}></img>
+                <img src={icon64} alt="Group Icon" />
             </ImgBox>
 
             {/* Head Info */}
             <HeadBox>
-                <DateInfo>D+265</DateInfo>|<AccessInfo>공개</AccessInfo>
+                <DateInfo>D+{calculateDday(group.createdAt) || 0}</DateInfo>
+                <AccessInfo>{group.isPublic ? "공개" : "비공개"}</AccessInfo>
             </HeadBox>
 
             {/* Content Info */}
             <ContentBox>
-                <ContentTitle>에델바이스</ContentTitle>
+                <ContentTitle>{group.name}</ContentTitle>
                 <ContentDesc>
-                    서로 한 마음으로 응원하고 아끼는 달봉이네 가족입니다.
+                    {group.introduction || "소개 내용이 없습니다."}{" "}
                 </ContentDesc>
             </ContentBox>
 
@@ -193,17 +205,17 @@ function GroupCard() {
             <CountBox>
                 <CountInfo>
                     <CountName>획득배지</CountName>
-                    <CountNum>2</CountNum>
+                    <CountNum>{group.badges.length || 0}</CountNum>{" "}
                 </CountInfo>
                 <CountInfo>
                     <CountName>추억</CountName>
-                    <CountNum>8</CountNum>
+                    <CountNum>{group.postCount || 0}</CountNum>{" "}
                 </CountInfo>
                 <CountInfo>
                     <CountName>그룹 공감</CountName>
                     <CountNum>
-                        <img src={icon16} />
-                        1.5K
+                        <img src={icon16} alt="Like Icon" />
+                        {group.likeCount ? `${group.likeCount}` : "0"}{" "}
                     </CountNum>
                 </CountInfo>
             </CountBox>
@@ -212,7 +224,7 @@ function GroupCard() {
 }
 
 //비공개 그룹 카드
-function PrivateGroupCard() {
+function PrivateGroupCard({ group }) {
     return (
         <PrivateCardBox>
             <HeadBox>
@@ -221,20 +233,20 @@ function PrivateGroupCard() {
 
             {/* Content Info */}
             <ContentBox>
-                <ContentTitle>에델바이스</ContentTitle>
+                <ContentTitle>{group.name}</ContentTitle>
             </ContentBox>
 
             {/* Count Info */}
             <CountBox>
                 <CountInfo>
                     <CountName>추억</CountName>
-                    <CountNum>8</CountNum>
+                    <CountNum>{group.postCount}</CountNum>
                 </CountInfo>
                 <CountInfo>
                     <CountName>그룹 공감</CountName>
                     <CountNum>
-                        <img src={icon16} />
-                        1.5K
+                        <img src={icon16} alt="" />
+                        {group.likeCount}
                     </CountNum>
                 </CountInfo>
             </CountBox>
@@ -248,7 +260,7 @@ function MemoryCard() {
         <CardBox>
             {/*Img Box */}
             <ImgBox>
-                <img src={icon64}></img>
+                <img src={icon64} alt=""></img>
             </ImgBox>
 
             {/* Head Info */}
@@ -276,11 +288,11 @@ function MemoryCard() {
                 <LoacationDate>인천앞바다ㆍ24.01.19</LoacationDate>
                 <CommentBox>
                     <BottomCount>
-                        <img src={icon16} />
+                        <img src={icon16} alt="" />
                         120
                     </BottomCount>
                     <BottomCount>
-                        <img src={comment} />8
+                        <img src={comment} alt="" />8
                     </BottomCount>
                 </CommentBox>
             </BottomBox>
@@ -305,11 +317,11 @@ function PrivateMemoryCard() {
             <BottomBox>
                 <CommentBox>
                     <BottomCount>
-                        <img src={icon16} />
+                        <img src={icon16} alt="" />
                         120
                     </BottomCount>
                     <BottomCount>
-                        <img src={comment} />8
+                        <img src={comment} alt="" />8
                     </BottomCount>
                 </CommentBox>
             </BottomBox>
