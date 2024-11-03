@@ -7,6 +7,7 @@ import {
     PrivateGroupCard,
     PrivateMemoryCard,
 } from "./Card";
+import { useState } from "react";
 
 //-----------------------------------------------
 // Group Area
@@ -33,13 +34,13 @@ const NUM_CARDS = 12;
 
 //--------------------------------------------------
 
-function OpenGroupList() {
+function OpenGroupList({ groups }) {
     return (
         <>
             <GroupListBox>
                 <GroupListArea>
-                    {Array.from({ length: NUM_CARDS }).map((_, index) => (
-                        <GroupCard key={index} />
+                    {groups.map((group, index) => (
+                        <GroupCard key={index} group={group} />
                     ))}
                 </GroupListArea>
             </GroupListBox>
@@ -47,13 +48,13 @@ function OpenGroupList() {
     );
 }
 
-function PrivateGroupList() {
+function PrivateGroupList({ groups }) {
     return (
         <>
             <GroupListBox>
                 <GroupListArea>
-                    {Array.from({ length: NUM_CARDS }).map((_, index) => (
-                        <PrivateGroupCard key={index} />
+                    {groups.map((group, index) => (
+                        <PrivateGroupCard key={index} group={group} />
                     ))}
                 </GroupListArea>
             </GroupListBox>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 
 const Modify = ({ onClose, isPublicInitial }) => {
     const [groupName, setGroupName] = useState("");
@@ -90,6 +92,8 @@ const Modify = ({ onClose, isPublicInitial }) => {
 // ----------------------------------------------------------------------
 
 const CreateGroup = () => {
+    const navigate = useNavigate();
+
     const [groupName, setGroupName] = useState("");
     const [groupImage, setGroupImage] = useState(null);
     const [groupDescription, setGroupDescription] = useState("");
@@ -100,16 +104,24 @@ const CreateGroup = () => {
         setGroupImage(e.target.files[0]);
     };
 
-    const handleSubmit = () => {
-        //TODO: - 그룹 수정 로직 추가
-        console.log({
-            groupName,
-            groupImage,
-            groupDescription,
-            isPublic,
-            groupPassword,
-        });
-        resetForm();
+    const handleSubmit = async () => {
+        try {
+            const response = await axios.post("http://localhost:8080/groups", {
+                name: groupName,
+                password: groupPassword,
+                imageUrl: groupImage,
+                isPublic,
+                badges: [],
+                introduction: groupDescription,
+            });
+            console.log("그룹 생성 성공:", response.data);
+            navigate("/group-list");
+        } catch (error) {
+            console.error(
+                "그룹 생성 실패:",
+                error.response ? error.response.data : error.message
+            );
+        }
     };
 
     const resetForm = () => {

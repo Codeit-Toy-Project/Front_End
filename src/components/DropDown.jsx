@@ -61,7 +61,7 @@ const DropdownItem = styled.li`
     }
 `;
 
-function ArrayDropDown() {
+function ArrayDropDown({ setSort }) {
     const options = ["최신순", "댓글순", "공감순"];
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0]);
@@ -72,6 +72,7 @@ function ArrayDropDown() {
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
+        setSort(option);
         setIsOpen(false);
     };
 

@@ -1,3 +1,4 @@
+import { useState } from "react"; // useState import 추가
 import styled from "styled-components";
 
 const TabContainer = styled.div`
@@ -15,29 +16,29 @@ const Tab = styled.button`
     font-size: 14px;
     font-weight: bold;
 
-    background-color: var(--gray50);
-
-    &:hover {
-    }
-
-    &:focus {
-        background-color: var(--black);
-
-        color: var(--white);
-    }
+    background-color: ${({ isActive }) =>
+        isActive ? "var(--black)" : "var(--gray50)"};
+    color: ${({ isActive }) => (isActive ? "var(--white)" : "var(--black)")};
 
     cursor: pointer;
 `;
 
 function AccessTab({ setIsPublic }) {
+    const [activeTab, setActiveTab] = useState(true);
+
     const handleTabClick = (isPublic) => {
         setIsPublic(isPublic);
+        setActiveTab(isPublic);
     };
 
     return (
         <TabContainer>
-            <Tab onClick={() => handleTabClick(true)}>공개</Tab>
-            <Tab onClick={() => handleTabClick(false)}>비공개</Tab>
+            <Tab isActive={activeTab} onClick={() => handleTabClick(true)}>
+                공개
+            </Tab>
+            <Tab isActive={!activeTab} onClick={() => handleTabClick(false)}>
+                비공개
+            </Tab>
         </TabContainer>
     );
 }
